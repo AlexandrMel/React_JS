@@ -11,7 +11,7 @@ const data = this.props.items
   });
 
   return (
-    <div className="todos-container">
+    <div className="todones-container">
       {data.length > 0 && (
         <div className="todos">
           <h5>TODONES</h5>
