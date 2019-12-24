@@ -21,6 +21,16 @@ class MainContainer extends React.Component {
       { text: 'World peace', status: true, id: 4363414 }
     ]}
   }
+handleUpdate = id =>{
+   const items = this.state.items;
+   const updatedItems = items.map(el => {
+     if (id === el.id) {
+       el.status = !el.status;
+     }
+     return el;
+   })
+   this.setState({items: updatedItems})
+  }
   render() {
         const data = this.state.items
         const todos = data.filter(x => !x.status)
@@ -28,8 +38,8 @@ class MainContainer extends React.Component {
         return (
           <main className="main-container">
             <FormContainer></FormContainer>
-            <ToDosContainer items={todos}></ToDosContainer>
-            <ToDonesContainer items={todones}></ToDonesContainer>
+            <ToDosContainer items={todos} updateFromChild={this.handleUpdate}></ToDosContainer>
+            <ToDonesContainer items={todones} updateFromChild={this.handleUpdate}></ToDonesContainer>
           </main>
         );
   }
