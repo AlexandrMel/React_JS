@@ -37,7 +37,7 @@ if(isSignedIn){
           return null;
       } else if(this.props.isSignedIn){
           return (
-          <button onClick={this.onSignOutClick} className="ui red google button">
+          <button onClick={this.onSignOutClick} className="ui red google button small">
               <i className="google icon" />
               Sign Out
           </button>
