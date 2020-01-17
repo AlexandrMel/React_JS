@@ -1,0 +1,89 @@
+.imgStyle {
+  object-fit: cover;
+  object-position: center;
+  height: 135px;
+  width: 95px;
+}
+
+.App {
+  width: 100%;
+  padding: 30px 0;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.playButton {
+  margin: 10px;
+}
+.CardContainer {
+  height: 100%;
+  border: 1px solid black;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.Card {
+  height: 135px;
+  width: 95px;
+  margin: 10px;
+  list-style: none;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 95px;
+  height: 135px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.transform {
+  transform: rotateY(180deg);
+  transition-duration: 0.8s;
+}
+#transform {
+  transform: rotateY(-180deg);
+  transition-duration: 0.6s;
+}
+.transition {
+  transition-duration: 0.6s;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 95px;
+  height: 135px;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+  border: 1px solid black;
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+  border: 1px solid black;
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.75);
+}
