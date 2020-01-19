@@ -1,29 +1,114 @@
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.Main {
+width: 100%;
+height: auto;
+background-color: whitesmoke;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
 .imgStyle {
   object-fit: cover;
   object-position: center;
   height: 135px;
   width: 95px;
 }
-
+.BigBorder {
+  margin: 0;
+  width: 100%;
+  height: 20px;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+.SmallBorder {
+  margin: 3px 0;
+  width: 100%;
+  height: 12px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
 .App {
   width: 100%;
-  padding: 30px 0;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  height: 70px;
+  background-color: whitesmoke;
 }
 .playButton {
   margin: 10px;
 }
+.leftSide {
+  display: flex;
+  height: 40px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+}
+p {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rightSide {
+  display: flex;
+  height: 40px;
+  width: 300px;
+}
+.input {
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: white;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 80%;
+  color: #4c7fcc;
+}
+.input2 {
+  height: 36px;
+  margin-left: 18px;
+  border: 2px solid black;
+  border-radius: 18px;
+  background-color: white;
+}
+.input2:hover {
+  background-color: #4F83CC;
+  color: whitesmoke;
+}
+form {
+  width: 50%;
+  height: 35px;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+}
 .CardContainer {
   height: 100%;
-  border: 1px solid black;
-  padding: 10px 20px;
+  max-width: 1200px;
+  /* border: 1px solid black; */
+  padding: 30px 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: whitesmoke;
 }
 .Card {
   height: 135px;

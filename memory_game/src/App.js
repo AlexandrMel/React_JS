@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css'
 import CardContainer from './components/CardContainer'
 import unsplash from './api/unsplash'
+import Image from './images/Card.jpg'
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -21,7 +22,6 @@ function shuffle(array) {
 
   return array;
 }
-
 const onSearchSubmit = async (term) => {
   const response = await unsplash.get('/search/photos', {
       
@@ -30,11 +30,16 @@ params: { query: term }
 return response.data
 }
 
+let setPlay = "PLAY"
 class App extends React.Component {
+
+
   state = ({
     Termstate: "",
     ListState: [],
-    Compare: []
+    Compare: [],
+    WrongG: 0,
+    CorrectG: 0
 
   })
 
@@ -65,7 +70,7 @@ onSubmit = async (e) => {
 
   const NewArr = [...listFilter, ...anotherList]
 const finalArr = shuffle(NewArr)
-  this.setState({ListState: finalArr})
+  this.setState({ListState: finalArr, WrongG: 0, CorrectG: 0, Termstate: ""})
 
   setTimeout(() => {
     this.Play()
@@ -81,8 +86,8 @@ this.setState({ListState: [...newListState]})
   
 }
 SendId = (specialid, id) => {
-  let newListState = JSON.parse(JSON.stringify(this.state.ListState))
-  console.log(newListState)
+let newListState = JSON.parse(JSON.stringify(this.state.ListState))
+console.log(newListState)
 newListState.forEach(x => {if(x.specialid===specialid){x.status="open"}})
 console.log(newListState)
 this.setState({ListState: [...newListState], Compare: [...this.state.Compare, id]})
@@ -98,29 +103,51 @@ if(this.state.Compare[0] === this.state.Compare[1]){
   console.log(newListState)
 newListState.forEach(x => {if(x.id===this.state.Compare[0]){x.won=1}})
 console.log(newListState)
-this.setState({ListState: [...newListState], Compare: []})
+this.setState({ListState: [...newListState], Compare: [], CorrectG: this.state.CorrectG + 1})
+if(this.state.ListState.filter(x => x.won === 1).length === 20){
+  let newsListState = JSON.parse(JSON.stringify(this.state.ListState))
+  console.log(newListState)
+newsListState.forEach(x => {x.img = "won"})
+console.log(newsListState)
+this.setState({ListState: [...newsListState], Compare: []})
+
+}
 }
 if(this.state.Compare[0] !== this.state.Compare[1]){
   let newListState = JSON.parse(JSON.stringify(this.state.ListState))
   console.log(newListState)
 newListState.forEach(x => {if(x.won === 0){x.status = "closed"}})
 console.log(newListState)
-this.setState({ListState: [...newListState], Compare: []})
+this.setState({ListState: [...newListState], Compare: [], WrongG: this.state.WrongG + 1})
+
 }
 else {}
-}, 1000);
+}, 800);
+
+setPlay = "REPLAY"
 }
 }
-  render(){return (
-    <div style={{width: '100%'}}>
+render(){
+  
+  return (
+    <div className="Main">
     <div className="App">
-      <form onSubmit={this.onSubmit} style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-        < input type="text" value={this.state.Termstate} onChange={this.onChange}  style={{width: '50%'}}  />
-        < input type="submit" value="Search" />
-      </form>
-      <button className="playButton" onClick={this.Play}>Play</button>
+      <div className="leftSide">
+    <p>Wrong Steps:<span>{this.state.WrongG}</span></p>
+    <p>Correct Steps:<span>{this.state.CorrectG}</span></p>
       </div>
+      <form onSubmit={this.onSubmit}>
+        < input type="text" className="input" value={this.state.Termstate} onChange={this.onChange}  />
+        < input  className="input2"type="submit" value={setPlay} />
+      </form>
+      <div className="rightSide">
+      <p>Wrong Steps:<span>{this.state.WrongG}</span></p>
+    <p>Correct Steps:<span>{this.state.CorrectG}</span></p>
+      </div>
+      </div>
+      <div className='BigBorder'><div className="SmallBorder"></div></div>
   <CardContainer SendId={this.SendId} ListState={ this.state.ListState } />
+      <div className='BigBorder'><div className="SmallBorder"></div></div>
     </div>
   )}
 }
